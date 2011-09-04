@@ -2,6 +2,9 @@
 
 Rake hooks let you add callbacks to rake:
 
+[![Build Status](https://secure.travis-ci.org/guillermo/rake-hooks.png)](http://travis-ci.org/guillermo/rake-hooks)
+
+
 ## Usage
 
 For example in your Rakefile
