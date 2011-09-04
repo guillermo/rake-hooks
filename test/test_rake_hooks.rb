@@ -1,5 +1,4 @@
 require 'test/unit'
-require 'rubygems'
 require 'rake'
 require 'rake/hooks'
 
@@ -20,8 +19,13 @@ end
 
 
 class TestRakeHooks < Test::Unit::TestCase
-  
+  begin
+    include Rake::DSL
+  rescue
+  end
+
   def setup
+    Rake::TaskManager.record_task_metadata = true
     Store.clean
   end
   
@@ -52,7 +56,24 @@ class TestRakeHooks < Test::Unit::TestCase
     execute(:super_task)
     assert_equal "I love wadus way.", Store.to_s
   end
-  
+
+  def test_save_comment_on_after_tasks
+    desc 'this is my task'
+    task :my_task do ; end
+
+    after :my_task do; end
+    assert_equal "this is my task", Rake::Task[:my_task].full_comment
+  end
+
+
+  def test_save_comment_on_before_tasks
+    desc 'this is my task'
+    task :my_task2 do ; end
+
+    before :my_task2 do; end
+    assert_equal "this is my task", Rake::Task[:my_task2].full_comment
+  end
+
   def execute(task_name)
     Rake::Task[task_name].execute
   end
