@@ -41,6 +41,10 @@ With rubygems use:
 With other systems
   Add lib dir to load path.
   
+## Dependencies
+
+* Rake
+
 ## Author
 
 Guillermo Álvarez <guillermo@cientifico.net>
@@ -51,4 +55,4 @@ http://github.com/guillermo/rake-hooks
 
 ## Date of writing 
   
-22 Jul 2010
+4 Sep 2011
