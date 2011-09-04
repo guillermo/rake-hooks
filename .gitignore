@@ -1,2 +1,4 @@
-*.gemspec
 *.gem
+.bundle
+Gemfile.lock
+pkg/*
