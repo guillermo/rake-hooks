@@ -65,12 +65,13 @@ With other systems
 
 ## Author
 
-Guillermo Álvarez <guillermo@cientifico.net>
+* [Joel Moss](mailto:joel@developwithstyle.com)
+* [Guillermo Álvarez](mailto:guillermo@cientifico.net)
 
 ## Web
 
 http://github.com/guillermo/rake-hooks
 
 ## Date of writing 
-  
-4 Sep 2011
+
+9 Sep 2011
