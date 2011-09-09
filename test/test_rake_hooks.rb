@@ -38,6 +38,20 @@ class TestRakeHooks < Test::Unit::TestCase
     assert_equal "wadusway", Store.to_s
   end
   
+  def test_after_multiple
+    task  :task_one do  Store << "wadus"; end
+    task  :task_two do  Store << "badus"; end
+    after :task_one, :task_two do  Store << "way"  ;  end
+    
+    execute(:task_one)
+    assert_equal "wadusway", Store.to_s
+    
+    Store.clean
+    
+    execute(:task_two)
+    assert_equal "badusway", Store.to_s
+  end
+  
   def test_before
     task   :supertask do Store << "wadus" ; end
     before :supertask do Store << "super" ; end
