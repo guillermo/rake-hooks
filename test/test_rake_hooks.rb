@@ -19,9 +19,8 @@ end
 
 
 class TestRakeHooks < Test::Unit::TestCase
-  begin
+  if defined?(Rake::DSL)
     include Rake::DSL
-  rescue
   end
 
   def setup
