@@ -34,6 +34,13 @@ Now run with rake
     Good Morning !
     GoodBye
     Now go to bed !"
+    
+You can also pass more than one task and each task will be setup with the
+callback
+
+    before :say_hello, :say_goodbye do
+      puts "Hi !"
+    end
   
   
 ## Installation
