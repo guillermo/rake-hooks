@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rake-hooks (1.2.1)
+    rake-hooks (1.2.2)
       rake (>= 0.9.2)
 
 GEM
