@@ -91,4 +91,8 @@ class TestRakeHooks < Test::Unit::TestCase
   def execute(task_name)
     Rake::Task[task_name].execute
   end
+
+  def invoke(task_name)
+    Rake::Task[task_name].invoke
+  end
 end
