@@ -25,6 +25,9 @@ class TestRakeHooks < Test::Unit::TestCase
   end
 
   def setup
+    if Rake::TaskManager.respond_to?(:record_task_metadata=)
+      Rake::TaskManager.record_task_metadata = true
+    end
     Store.clean
   end
 
