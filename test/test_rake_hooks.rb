@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'test/unit'
 require 'rake'
 require 'rake/hooks'
@@ -24,7 +25,9 @@ class TestRakeHooks < Test::Unit::TestCase
   end
 
   def setup
-    Rake::TaskManager.record_task_metadata = true
+    if Rake::TaskManager.respond_to?(:record_task_metadata=)
+      Rake::TaskManager.record_task_metadata = true
+    end
     Store.clean
   end
 
