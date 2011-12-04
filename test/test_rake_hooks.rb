@@ -25,6 +25,7 @@ class TestRakeHooks < Test::Unit::TestCase
 
   def setup
     Rake::TaskManager.record_task_metadata = true
+    Rake::Task.clear
     Store.clean
   end
 
