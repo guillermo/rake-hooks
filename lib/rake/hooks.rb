@@ -3,7 +3,7 @@ module Rake::Hooks
     task_names.each do |task_name|
       old_task = Rake.application.instance_variable_get('@tasks').delete(task_name.to_s)
       desc old_task.full_comment
-      task task_name do
+      task task_name => old_task.prerequisites do
         new_task.call
         old_task.invoke
       end
@@ -14,7 +14,7 @@ module Rake::Hooks
     task_names.each do |task_name|
       old_task = Rake.application.instance_variable_get('@tasks').delete(task_name.to_s)
       desc old_task.full_comment
-      task task_name do
+      task task_name => old_task.prerequisites do
         old_task.invoke
         new_task.call
       end
