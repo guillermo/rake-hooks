@@ -25,6 +25,7 @@ class TestRakeHooks < Test::Unit::TestCase
 
   def setup
     Rake::TaskManager.record_task_metadata = true
+    Rake::Task.clear
     Store.clean
   end
 
@@ -87,7 +88,47 @@ class TestRakeHooks < Test::Unit::TestCase
     assert_equal "this is my task", Rake::Task[:my_task2].full_comment
   end
 
+  def test_save_prerequisites_with_after_tasks
+    task :a       do ; end
+    task :b => :a do ; end
+
+    assert_equal ['a'], Rake::Task[:b].prerequisites
+    after :b do ; end
+    assert_equal ['a'], Rake::Task[:b].prerequisites
+  end
+
+  def test_save_prerequisites_with_before_tasks
+    task :a       do ; end
+    task :b => :a do ; end
+
+    assert_equal ['a'], Rake::Task[:b].prerequisites
+    before :b do ; end
+    assert_equal ['a'], Rake::Task[:b].prerequisites
+  end
+
+  def test_prerequisites_run_before_before_tasks
+    task   :a       do Store << "a" ; end
+    task   :b => :a do Store << "b" ; end
+    before :b       do Store << "-BEFORE-" ; end
+
+    invoke(:b)
+    assert_equal "a-BEFORE-b", Store.to_s
+  end
+
+  def test_prerequisites_run_before_after_tasks
+    task  :a       do Store << "a"       ; end
+    task  :b => :a do Store << "b"       ; end
+    after :b       do Store << "-AFTER-" ; end
+
+    invoke(:b)
+    assert_equal "ab-AFTER-", Store.to_s
+  end
+
   def execute(task_name)
     Rake::Task[task_name].execute
+  end
+
+  def invoke(task_name)
+    Rake::Task[task_name].invoke
   end
 end
