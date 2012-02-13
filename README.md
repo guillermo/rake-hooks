@@ -3,6 +3,7 @@
 Rake hooks let you add callbacks to rake:
 
 [![Build Status](https://secure.travis-ci.org/guillermo/rake-hooks.png)](http://travis-ci.org/guillermo/rake-hooks)
+[![endorse](http://api.coderwall.com/guillermo/endorsecount.png)](http://coderwall.com/guillermo)
 
 
 ## Usage
