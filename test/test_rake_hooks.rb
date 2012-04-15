@@ -126,6 +126,28 @@ class TestRakeHooks < Test::Unit::TestCase
     assert_equal "ab-AFTER-", Store.to_s
   end
 
+  def test_raise_exceptions_on_after_task
+    task  :a do raise "ERROR"      ; end
+    after :a do Store << "-AFTER-" ; end
+
+    assert_raise RuntimeError do
+      invoke(:a)
+    end
+
+    assert_equal "", Store.to_s
+  end
+
+  def test_ignore_exceptions_on_after_task
+    task  :a                             do raise "ERROR"     ; end
+    after :a, :ignore_exceptions => true do Store << "-AFTER-"; end
+
+    assert_nothing_raised RuntimeError do
+      invoke(:a)
+    end
+
+    assert_equal "-AFTER-", Store.to_s
+  end
+
   def execute(task_name)
     Rake::Task[task_name].execute
   end
