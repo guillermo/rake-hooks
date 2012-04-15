@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Rake-hooks by guillermo</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/guillermo/rake-hooks">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/guillermo/rake-hooks/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/guillermo/rake-hooks/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Rake-hooks</h1>
+          <p>Rake hooks let you add callbacks to rake tasks.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/guillermo">guillermo</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>rake-hooks</h1>
+
+<p>Rake hooks let you add callbacks to rake:</p>
+
+<p><a href="http://travis-ci.org/guillermo/rake-hooks"><img src="https://secure.travis-ci.org/guillermo/rake-hooks.png" alt="Build Status"></a>
+<a href="http://coderwall.com/guillermo"><img src="http://api.coderwall.com/guillermo/endorsecount.png" alt="endorse"></a></p>
+
+<h2>Usage</h2>
+
+<p>For example in your Rakefile</p>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'rake/hooks'</span>
+
+<span class="n">task</span> <span class="ss">:say_hello</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Good Morning !"</span>
+<span class="k">end</span>
+
+<span class="n">after</span> <span class="ss">:say_hello</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"GoodBye"</span>
+<span class="k">end</span>
+
+<span class="n">after</span> <span class="ss">:say_hello</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Now go to bed !"</span>
+<span class="k">end</span>
+
+<span class="n">before</span> <span class="ss">:say_hello</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Hi !"</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>Now run with rake</p>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>rake say_hello
+Hi !
+Good Morning !
+GoodBye
+Now go to bed !
+</pre>
+</div>
+
+
+<p>You can also pass more than one task and each task will be setup with the
+callback</p>
+
+<div class="highlight">
+<pre><span class="n">before</span> <span class="ss">:say_hello</span><span class="p">,</span> <span class="ss">:say_goodbye</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="s2">"Hi !"</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<h2>Installation</h2>
+
+<p>With rubygems use:
+<code>bash
+$ gem install rake-hooks
+</code></p>
+
+<p>With other systems
+  Add lib dir to load path.</p>
+
+<h2>Dependencies</h2>
+
+<ul>
+<li>Rake</li>
+</ul><h2>Author</h2>
+
+<ul>
+<li><a href="mailto:joel@developwithstyle.com">Joel Moss</a></li>
+<li><a href="mailto:guillermo@cientifico.net">Guillermo Álvarez</a></li>
+</ul><h2>Web</h2>
+
+<p><a href="http://github.com/guillermo/rake-hooks">http://github.com/guillermo/rake-hooks</a></p>
+
+<h2>Date of writing</h2>
+
+<p>9 Sep 2011</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
