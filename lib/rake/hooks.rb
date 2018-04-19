@@ -4,7 +4,7 @@ module Rake::Hooks
       old_task = Rake.application.instance_variable_get('@tasks').delete(task_name.to_s)
       desc old_task.full_comment
       task task_name => old_task.prerequisites do
-        new_task.call
+        new_task.call(old_task)
         old_task.invoke
       end
     end
@@ -24,7 +24,7 @@ module Rake::Hooks
           raise unless ignore_exceptions
         end
 
-        new_task.call
+        new_task.call(old_task)
       end
     end
   end

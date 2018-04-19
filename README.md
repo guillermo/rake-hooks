@@ -44,8 +44,8 @@ You can also pass more than one task and each task will be setup with the
 callback
 
 ```ruby
-before :say_hello, :say_goodbye do
-  puts "Hi !"
+before :say_hello, :say_goodbye do |t|
+  puts "Before #{t}"
 end
 ```
 
